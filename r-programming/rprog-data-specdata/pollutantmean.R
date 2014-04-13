@@ -11,19 +11,20 @@ pollutantmean <- function(directory, pollutant, id = 1:332) {
   
   ## Return the mean of the pollutant across all monitors list
   ## in the 'id' vector (ignoring NA values)
-  
-  #start
-  #list all files in the directory provided to the function
-  fileList <- list.files(directory, full.names=TRUE)
-  print(class(fileList))
-  myData <- read.csv(fileList[1])
-  print(myData[1:2,])
-  #print(attributes(myData))
-  #print(myData[1:1,1:1])
-  
-  subFileList <- fileList[id]
-  
-  print(nrow(myData))
-  print(complete.cases(myData))
-  print(myData[complete.cases(myData),])
+
+  v <- vector(mode="numeric", length=0)
+
+  for(i in id){
+    fileStr <- paste(directory, "/", sprintf("%03d", as.numeric(i)), ".csv", sep = "")
+    myData <- read.csv(fileStr)
+    
+    num <- as.numeric(myData[[pollutant]][complete.cases(myData[[pollutant]])])
+    
+    v <- append(v, num)
+  }
+  print(mean(v))
 }
+
+pollutantmean("specdata", "sulfate", 1:10)
+pollutantmean("specdata", "nitrate", 70:72)
+pollutantmean("specdata", "nitrate", 23)
