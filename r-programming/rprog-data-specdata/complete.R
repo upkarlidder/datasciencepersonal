@@ -25,10 +25,9 @@ complete <- function(directory, id = 1:332) {
     newRow <- data.frame(id=i, nobs=nob)
     df <- rbind(df, newRow)
   }
-  print(df)
+  df
 }
 
 complete("specData", 1:2)
 complete("specdata", c(2, 4, 8, 10, 12))
 complete("specdata", 30:25)
-complete("specdata", 3)

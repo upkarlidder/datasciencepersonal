@@ -22,7 +22,7 @@ pollutantmean <- function(directory, pollutant, id = 1:332) {
     
     v <- append(v, num)
   }
-  print(mean(v))
+  mean(v)
 }
 
 pollutantmean("specdata", "sulfate", 1:10)
