@@ -16,7 +16,7 @@ corr <- function(directory, threshold = 0) {
   for(i in r$id){
     fileStr <- paste(directory, "/", sprintf("%03d", as.numeric(i)), ".csv", sep = "")
     myData <- read.csv(fileStr)
-    cr <- append(cr, round(cor(myData$sulfate, myData$nitrate, use="na.or.complete"),5))
+    cr <- append(cr, cor(myData$sulfate, myData$nitrate, use="na.or.complete"))
   }
   cr
 }
